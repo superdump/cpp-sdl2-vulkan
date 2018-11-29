@@ -4,9 +4,9 @@ if(${CMAKE_VERSION} VERSION_LESS 3.12)
     cmake_policy(VERSION ${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION})
 endif()
 
-project(scratchapixel
+project(project
         VERSION 0.1.0
-        DESCRIPTION "An implementation of scratchapixel.com"
+        DESCRIPTION "A clean SDL2 Vulkan project"
         LANGUAGES CXX)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${${PROJECT_NAME}_SOURCE_DIR}/cmake")
@@ -26,7 +26,13 @@ check_ipo_supported(RESULT ipo_supported)
 find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIR})
 
-# scratchapixel
+# Vulkan
+find_package(vulkan REQUIRED)
+
+set(PROJECT_DEPS ${SDL2_LIBRARY} Vulkan::Vulkan)
+
+
+# project
 
 include_directories(include)
 
@@ -37,6 +43,7 @@ add_library(${PROJECT_NAME} STATIC ${${PROJECT_NAME}_SOURCES})
 if(ipo_supported)
     set_target_properties(${PROJECT_NAME} PROPERTIES INTERPROCEDURAL_OPTIMIZATION TRUE)
 endif()
+target_link_libraries(${PROJECT_NAME} ${PROJECT_DEPS})
 install(TARGETS ${PROJECT_NAME} DESTINATION lib)
 install(FILES ${PROJECT_NAME}.h DESTINATION include)
 
@@ -47,5 +54,5 @@ add_executable(example ${example_SOURCES})
 if(ipo_supported)
     set_target_properties(example PROPERTIES INTERPROCEDURAL_OPTIMIZATION TRUE)
 endif()
-target_link_libraries(example ${PROJECT_NAME} ${SDL2_LIBRARY})
+target_link_libraries(example ${PROJECT_NAME} ${PROJECT_DEPS})
 install(TARGETS example DESTINATION bin)
