@@ -9,7 +9,15 @@ project(project
         DESCRIPTION "A clean SDL2 Vulkan project"
         LANGUAGES CXX)
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${${PROJECT_NAME}_SOURCE_DIR}/cmake")
+list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
+
+
+# Options
+
+option(PACKAGE_TESTS "Build the tests" ON)
+
+
+# Generic
 
 # C++11
 set(CMAKE_CXX_STANDARD 11)
@@ -28,6 +36,21 @@ endif()
 
 
 # Dependencies
+
+# GoogleTest
+include(FetchContent)
+
+FetchContent_Declare(
+  googletest
+  GIT_REPOSITORY https://github.com/google/googletest.git
+  GIT_TAG        release-1.8.0
+)
+
+FetchContent_GetProperties(googletest)
+if(NOT googletest_POPULATED)
+  FetchContent_Populate(googletest)
+  add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
+endif()
 
 # SDL2
 find_package(SDL2 REQUIRED)
@@ -63,3 +86,10 @@ if(ipo_supported)
 endif()
 target_link_libraries(example ${PROJECT_NAME} ${PROJECT_DEPS})
 install(TARGETS example DESTINATION bin)
+
+
+# Tests
+if(PACKAGE_TESTS)
+    enable_testing()
+    add_subdirectory(tests)
+endif()

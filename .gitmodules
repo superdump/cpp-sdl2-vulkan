@@ -1,3 +1,0 @@
-[submodule "extern/googltest"]
-	path = extern/googltest
-	url = git@github.com:abseil/googletest.git
