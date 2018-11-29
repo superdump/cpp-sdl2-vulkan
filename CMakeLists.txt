@@ -19,16 +19,16 @@ option(PACKAGE_TESTS "Build the tests" ON)
 
 # Generic
 
-# C++11
+## C++11
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# Interprocedural Optimization
+## Interprocedural Optimization
 include(CheckIPOSupported)
 check_ipo_supported(RESULT ipo_supported)
 
-# CCache
+## CCache
 find_program(CCACHE_PROGRAM ccache)
 if(CCACHE_PROGRAM)
     set(CMAKE_CXX_COMPILER_LAUNCHER "${CCACHE_PROGRAM}")
@@ -37,32 +37,32 @@ endif()
 
 # Dependencies
 
-# GoogleTest
+## GoogleTest
 include(FetchContent)
 
 FetchContent_Declare(
-  googletest
-  GIT_REPOSITORY https://github.com/google/googletest.git
-  GIT_TAG        release-1.8.0
+    googletest
+    GIT_REPOSITORY https://github.com/google/googletest.git
+    GIT_TAG release-1.8.0
 )
 
 FetchContent_GetProperties(googletest)
 if(NOT googletest_POPULATED)
-  FetchContent_Populate(googletest)
-  add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
+    FetchContent_Populate(googletest)
+    add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
 endif()
 
-# SDL2
+## SDL2
 find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIR})
 
-# Vulkan
+## Vulkan
 find_package(vulkan REQUIRED)
 
+
+# Project
+
 set(PROJECT_DEPS ${SDL2_LIBRARY} Vulkan::Vulkan)
-
-
-# project
 
 include_directories(include)
 
@@ -89,6 +89,7 @@ install(TARGETS example DESTINATION bin)
 
 
 # Tests
+
 if(PACKAGE_TESTS)
     enable_testing()
     add_subdirectory(tests)
