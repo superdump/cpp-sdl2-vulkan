@@ -21,7 +21,7 @@ option(PACKAGE_TESTS "Build the tests" OFF)
 
 # Generic
 
-## C++11
+## C++17
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
