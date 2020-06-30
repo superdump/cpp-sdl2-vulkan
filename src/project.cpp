@@ -57,7 +57,7 @@ Project project_init(int w, int h) {
         const VkApplicationInfo app = {
             .sType = VK_STRUCTURE_TYPE_APPLICATION_INFO,
             .pApplicationName = "SDL_vulkan example",
-            .apiVersion = VK_MAKE_VERSION(1, 0, 3),
+            .apiVersion = VK_MAKE_VERSION(1, 1, 0),
         };
 
         {
