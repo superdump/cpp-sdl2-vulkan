@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Robert Swain
+ * Copyright (c) 2018-2020 Robert Swain
  *
  * The MIT License (MIT)
  *
@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-#include "project.h"
+#include "project/project.h"
 
 const int WIDTH = 800;
 const int HEIGHT = 600;

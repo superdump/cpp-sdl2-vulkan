@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Robert Swain
+ * Copyright (c) 2018-2020 Robert Swain
  * Copyright (c) 2016 David McFarland
  *
  * The MIT License (MIT)
@@ -28,7 +28,7 @@
  * https://github.com/corngood/SDL_vulkan
  */
 
-#include "project.h"
+#include "project/project.h"
 
 #include <iostream>
 #include <cassert>
