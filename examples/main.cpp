@@ -1,5 +1,3 @@
-#include "project.h"
-
 /*
  * Copyright (c) 2018 Robert Swain
  *
@@ -24,8 +22,13 @@
  * SOFTWARE.
  */
 
+#include "project.h"
+
+const int WIDTH = 800;
+const int HEIGHT = 600;
+
 int main(int argc, char *argv[]) {
-    auto project = project_init(1280, 720);
+    auto project = project_init(WIDTH, HEIGHT);
     project_loop(project);
     return 0;
 }
