@@ -11,7 +11,7 @@ project(project
         DESCRIPTION "A clean SDL2 Vulkan project"
         LANGUAGES CXX)
 
-list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
+set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 
 
 # Options
